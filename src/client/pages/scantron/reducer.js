@@ -18,9 +18,13 @@ for (let i = 1; i <= 38; i++) {
   answers.set([4, i], '');
 }
 
-const initialState = { answers: answers };
+const initialState = { 
+  answers: answers,
+  currentSection: 1
+};
 
 const reducer = (state=initialState, action) => {
+  //freeze state to avoid accidental mutation
   Object.freeze(state);
 
   switch(action.type) {
