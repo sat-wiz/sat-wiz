@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import AnswerOptions from './AnswerOptions'
-import { sectionOneKeySelector, sectionTwoKeySelector, sectionThreeKeySelector, sectionFourKeySelector } from '../selectors';
+import { sectionOneKeysSelector, sectionTwoKeysSelector, sectionThreeKeysSelector, sectionFourKeysSelector } from '../selectors';
 
 function ScantronContainer({ sectionOne }) {
   let sectionOneElements = sectionOne.map((key) => <AnswerOptions key={`${key}`} sectionNum={key[0]} questionNum={key[1]} />);
@@ -14,7 +14,7 @@ function ScantronContainer({ sectionOne }) {
 }
 
 const mapStateToProps = store => ({
-  sectionOne: sectionOneKeySelector(store),
+  sectionOne: sectionOneKeysSelector(store),
 });
 
 export default connect(mapStateToProps)(ScantronContainer);

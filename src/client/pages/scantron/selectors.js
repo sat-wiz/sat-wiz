@@ -2,7 +2,7 @@ import { createSelector } from 'reselect'
 
 const scantronSelector = store => store.scantron.answers;
 
-export const sectionOneKeySelector = createSelector(
+export const sectionOneKeysSelector = createSelector(
   scantronSelector,
   (scantron) =>  {
     let sectionOne = [];
@@ -15,7 +15,7 @@ export const sectionOneKeySelector = createSelector(
   }
 )
 
-export const sectionTwoKeySelector = createSelector(
+export const sectionTwoKeysSelector = createSelector(
   scantronSelector,
   (scantron) =>  {
     let sectionTwo = [];
@@ -28,7 +28,7 @@ export const sectionTwoKeySelector = createSelector(
   }
 );
 
-export const sectionThreeKeySelector = createSelector(
+export const sectionThreeKeysSelector = createSelector(
   scantronSelector,
   (scantron) =>  {
     let sectionThree = [];
@@ -41,7 +41,7 @@ export const sectionThreeKeySelector = createSelector(
   }
 );
 
-export const sectionFourKeySelector = createSelector(
+export const sectionFourKeysSelector = createSelector(
   scantronSelector,
   (scantron) =>  {
     let sectionFour = [];
