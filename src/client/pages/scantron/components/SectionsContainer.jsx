@@ -4,12 +4,29 @@ import PropTypes from 'prop-types';
 import AnswerOptions from './AnswerOptions'
 import { sectionOneKeysSelector, sectionTwoKeysSelector, sectionThreeKeysSelector, sectionFourKeysSelector } from '../selectors';
 //import order: library -> components -> props
+import styled from 'styled-components';
+
+
+
+const Scantron = styled.h1`
+  font-size: 3em;
+  color: pink;
+  
+`
+const Section = styled.h3`
+  font-size: 2em;
+  color: palevioletred;
+  
+`
+
+//if not using object destructing we would pass props as a parameter to SectionsContainer functional component.
 
 function SectionsContainer({ currentSection, sectionOne, sectionTwo, sectionThree, sectionFour }) {
-  const sectionOneList = sectionOne.map((key) => <AnswerOptions key={`${key}`} sectionNum={key[0]} questionNum={key[1]} />);
-  const sectionTwoList = sectionTwo.map((key) => <AnswerOptions key={`${key}`} sectionNum={key[0]} questionNum={key[1]} />);
-  const sectionThreeList = sectionThree.map((key) => <AnswerOptions key={`${key}`} sectionNum={key[0]} questionNum={key[1]} />);
-  const sectionFourList = sectionFour.map((key) => <AnswerOptions key={`${key}`} sectionNum={key[0]} questionNum={key[1]} />);
+
+  const sectionOneList = sectionOne.map((key) => <AnswerOptions key={`${key}`} sectionNum={1} questionNum={key} />);
+  const sectionTwoList = sectionTwo.map((key) => <AnswerOptions key={`${key}`} sectionNum={2} questionNum={key} />);
+  const sectionThreeList = sectionThree.map((key) => <AnswerOptions key={`${key}`} sectionNum={3} questionNum={key} />);
+  const sectionFourList = sectionFour.map((key) => <AnswerOptions key={`${key}`} sectionNum={4} questionNum={key} />);
   
   //conditional rendering of sections based on currentSecion prop
   const SECTION_LISTS = {
@@ -19,10 +36,12 @@ function SectionsContainer({ currentSection, sectionOne, sectionTwo, sectionThre
     4: sectionFourList
   }
 
+
+
   return (
     <>
-      <h1>Scantron Container</h1>
-      <p>Current section: {currentSection} </p>
+      <Scantron>Scantron - YEEET PROGRESS :C</Scantron>
+      <Section>Section: {currentSection} </Section>
       {SECTION_LISTS[currentSection]}
     </>
   );

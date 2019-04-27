@@ -1,26 +1,28 @@
 import { INPUT_ANSWER } from './constants';
 
-
-
 //initialize scantron with empty values { [sectionNum, questionNum]: answer }
-let answers = new Map();
+let sectionOne  = {}, sectionTwo = {}, sectionThree = {}, sectionFour = {}
 
 for (let i = 1; i <= 52; i++) {
-  answers.set([1, i], '');
+  sectionOne[i] = '';
 }
 for (let i = 1; i <= 44; i++) {
-  answers.set([2, i], '');
+  sectionTwo[i] = '';
 }
 for (let i = 1; i <= 20; i++) {
-  answers.set([3, i], '');
+  sectionThree[i] = '';
 }
 for (let i = 1; i <= 38; i++) {
-  answers.set([4, i], '');
+  sectionFour[i] = '';
 }
 
 const initialState = { 
-  answers: answers,
-  currentSection: 1
+  sectionOne: sectionOne,
+  sectionTwo: sectionTwo,
+  sectionThree: sectionThree,
+  sectionFour: sectionFour,
+
+  currentSection: 1,
 };
 
 const reducer = (state=initialState, action) => {
@@ -29,10 +31,28 @@ const reducer = (state=initialState, action) => {
 
   switch(action.type) {
     case INPUT_ANSWER:
-      let answers = new Map(state);
-      answers.set([action.sectionNum, action.questionNum], action.answer);
+
+    const SECTIONS = {
+      1: 'sectionOne',
+      2: 'sectionTwo',
+      3: 'sectionThree',
+      4: 'sectionFour'
+    }
+
+    //Declare which section we will be working with
+    let sectionKey = SECTIONS[action.sectionNum];
+
+    //Make a copy of the original section (we do not mutate original state);
+    let newSection = {...state[sectionKey]};
+
+    //With new section copy, update the answer for its corresponding question.
+    newSection[action.questionNum] = action.answer
+
+    
       return {
-        answers
+        ...state,
+       sectionKey : newSection
+
       };
     
     default:
