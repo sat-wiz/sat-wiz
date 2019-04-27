@@ -1,9 +1,8 @@
-'use strict';
 
 const Sequelize = require('sequelize');
-const config = require('../config/config.json');
+// const config = require('../config/config.json');
 
-module.exports = new Sequelize(config.db.name, config.db.userName, config.db.password, {
+module.exports = new Sequelize('satwiz', 'satwiz', 'satwiz', {
   host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: false,

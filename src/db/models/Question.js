@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize');
-const db = require('./initialDB');
+// const Sequelize = require('sequelize');
+// const db = require('./initialDB');
 
 module.exports = (sequelize, DataTypes) => {
   const Question = sequelize.define('question', {
@@ -17,4 +17,5 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     }
   });
+  return Question;
 }

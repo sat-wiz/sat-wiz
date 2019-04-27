@@ -1,8 +1,18 @@
+const questionsController = require('../../db/controllers/Questions');
+const express = require('express');
+// const app = express();
+const router = express.Router();
 
-const todoItemsController = require('../../db/controllers/Questions');
 
-module.exports = (app) => {
-  app.get('/api', (req, res) => res.status(200).send({
-    message: 'Welcome to the Todos API!',
-  }));
-}
+
+router.get('/', (req, res) => res.status(200).send({
+  message: 'Welcome to the Todos API!',
+}))
+
+router.get('/add', (req, res) => res.status(200).send({
+  message: 'Success GET to /add!',
+}))
+
+
+module.exports = router;
+

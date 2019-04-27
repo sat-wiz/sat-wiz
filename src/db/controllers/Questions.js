@@ -1,4 +1,4 @@
-const Question = require('../models').Question;
+// const Question = require('../models').Question;
 
 module.exports = {
   create(req, res) {

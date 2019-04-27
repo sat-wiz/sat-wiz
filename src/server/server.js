@@ -1,16 +1,33 @@
 const express = require('express');
 const app = express();
-const bodyparser = require('body-parser');
+const db = require('../db/models/db')
+const models = require('../db/models/index');
+const sequelize = require('sequelize');
+// const bodyparser = require('body-parser');
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+
+db.authenticate()
+    .then(() => console.log('Database connected...'))
+    .catch(err => console.log('Error: ' + err))
+
+models.sequelize.sync()
+    .then(() => {
+    app.listen(3000, () => {
+        console.log("Server listening on port 3000");
+    });
+})
+
+app.use('/test',
+    require('./routes/index.js')
+    // () => {
+    //     console.log('hi')
+    // }
+);
 
 app.get('/', function(req,res) {
     res.send('Testing!')
 })
-
-app.listen(3000, () => {
-    console.log("Server listening on port 3000")
-});
 
 module.exports = app;

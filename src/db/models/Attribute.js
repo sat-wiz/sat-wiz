@@ -4,10 +4,10 @@
 module.exports = (sequelize, DataTypes) => {
   const Attribute = sequelize.define('Attribute', {
     attrib: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     referenceCode: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       autoincrement: true,
       primaryKey: true,
     }
