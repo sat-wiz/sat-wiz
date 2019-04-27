@@ -2,9 +2,10 @@ import React from 'react';
 
 function HomePage() {
   return (
-    <p>
-      This is the Home Page
-    </p>
+    <>
+      <img alt='logo' src='./logo.png' /> 
+      <p>This is the Home Page</p>
+    </>
   );
 }
 
