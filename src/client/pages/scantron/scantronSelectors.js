@@ -2,58 +2,54 @@ import { createSelector } from 'reselect'
 
 const scantronSelector = store => store.scantron.answers;
 
-export const sectionOneSelector = createSelector(
+export const sectionOneKeySelector = createSelector(
   scantronSelector,
   (scantron) =>  {
-    let sectionOne = new Map();
+    let sectionOne = [];
 
     for (let key in scantron) {
-      let sectionNum = key[0], questionNum = key[1], answer = scantron[key];
-      if (sectionNum === 1) sectionOne.set([sectionNum, questionNum], answer);
+      if (key[0] === 1) sectionOne.push(key);
     }
 
     return sectionOne;
   }
 )
 
-export const sectionTwoSelector = createSelector(
+export const sectionTwoKeySelector = createSelector(
   scantronSelector,
   (scantron) =>  {
-    let sectionTwo = new Map();
+    let sectionTwo = [];
 
     for (let key in scantron) {
-      let sectionNum = key[0], questionNum = key[1], answer = scantron[key];
-      if (sectionNum === 1) sectionTwo.set([sectionNum, questionNum], answer);
+      if (key[0] === 1) sectionTwo.push(key);
     }
 
     return sectionTwo;
   }
-)
+);
 
-export const sectionThreeSelector = createSelector(
+export const sectionThreeKeySelector = createSelector(
   scantronSelector,
   (scantron) =>  {
-    let sectionThree = new Map();
+    let sectionThree = [];
 
     for (let key in scantron) {
-      let sectionNum = key[0], questionNum = key[1], answer = scantron[key];
-      if (sectionNum === 1) sectionThree.set([sectionNum, questionNum], answer);
+      if (key[0] === 1) sectionThree.push(key);
     }
 
     return sectionThree;
   }
-)
+);
 
-export const sectionFourSelector = createSelector(
+export const sectionFourKeySelector = createSelector(
   scantronSelector,
   (scantron) =>  {
-    let sectionFour = new Map();
+    let sectionFour = [];
 
     for (let key in scantron) {
-      let sectionNum = key[0], questionNum = key[1], answer = scantron[key];
-      if (sectionNum === 1) sectionFour.set([sectionNum, questionNum], answer);
+      if (key[0] === 1) sectionFour.push(key);
     }
 
     return sectionFour;
   }
-)
+);

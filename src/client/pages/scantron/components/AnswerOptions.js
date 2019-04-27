@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { inputAnswer } from '../scantronActions'
 
 function AnswerOptions({ sectionNum, questionNum, answer }) {
   return (
@@ -15,6 +16,7 @@ const mapStateToProps = (store, ownProps) => ({
 });
 
 const mapDispatchToProps = {
+  inputAnswer,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AnswerOptions);
