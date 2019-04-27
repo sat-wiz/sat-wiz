@@ -7,7 +7,7 @@ export const sectionOneKeySelector = createSelector(
   (scantron) =>  {
     let sectionOne = [];
 
-    for (let key in scantron) {
+    for (let key of scantron.keys()) {
       if (key[0] === 1) sectionOne.push(key);
     }
 
@@ -20,7 +20,7 @@ export const sectionTwoKeySelector = createSelector(
   (scantron) =>  {
     let sectionTwo = [];
 
-    for (let key in scantron) {
+    for (let key of scantron.keys()) {
       if (key[0] === 1) sectionTwo.push(key);
     }
 
@@ -33,7 +33,7 @@ export const sectionThreeKeySelector = createSelector(
   (scantron) =>  {
     let sectionThree = [];
 
-    for (let key in scantron) {
+    for (let key of scantron.keys()) {
       if (key[0] === 1) sectionThree.push(key);
     }
 
@@ -46,7 +46,7 @@ export const sectionFourKeySelector = createSelector(
   (scantron) =>  {
     let sectionFour = [];
 
-    for (let key in scantron) {
+    for (let key of scantron.keys()) {
       if (key[0] === 1) sectionFour.push(key);
     }
 

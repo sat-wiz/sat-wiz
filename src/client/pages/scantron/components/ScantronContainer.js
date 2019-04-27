@@ -14,7 +14,7 @@ function ScantronContainer({ sectionOne }) {
 }
 
 const mapStateToProps = store => ({
-  sectionOne: sectionOneKeySelector,
+  sectionOne: sectionOneKeySelector(store),
 });
 
 export default connect(mapStateToProps)(ScantronContainer);
