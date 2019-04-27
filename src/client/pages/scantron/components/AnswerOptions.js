@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { inputAnswer } from '../scantronActions'
+import { inputAnswer } from '../actions'
 
 function AnswerOptions({ sectionNum, questionNum, answer }) {
   return (

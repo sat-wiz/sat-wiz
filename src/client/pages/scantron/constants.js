@@ -1,0 +1,1 @@
+export const INPUT_ANSWER = 'INPUT_ANSWER';
