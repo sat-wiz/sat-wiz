@@ -1,7 +1,7 @@
 'use strict';
 
 const Sequelize = require('sequelize');
-const config = require('./config');
+const config = require('../config/config.json');
 
 module.exports = new Sequelize(config.db.name, config.db.userName, config.db.password, {
   host: 'localhost',
