@@ -1,2 +1,0 @@
-# satwiz
-SAT analytics tool
