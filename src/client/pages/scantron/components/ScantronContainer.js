@@ -1,15 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { sectionOneSelector, sectionTwoSelector, sectionThreeSelector, sectionFourSelector } from '../scantronSelectors';
 
-const mapStateToProps = store => ({
-  section1: store.scantron.section1,
-});
-
-const mapDispatchToProps = {
-};
-
-
-function ScantronContainer() {
+function ScantronContainer({ sectionOne }) {
+  let sectionOneElements = sectionOne.map(() => <Answer key={} sectionNum={} questionNum={} />) 
   return (
     <>
       <p>Scantron container</p>
@@ -17,4 +11,8 @@ function ScantronContainer() {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ScantronContainer);
+const mapStateToProps = store => ({
+  sectionOne: sectionOneSelector,
+});
+
+export default connect(mapStateToProps)(ScantronContainer);
