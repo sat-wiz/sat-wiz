@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { inputAnswer } from '../actions'
 
 function AnswerOptions({ sectionNum, questionNum, answer }) {
@@ -18,5 +19,10 @@ const mapStateToProps = (store, ownProps) => ({
 const mapDispatchToProps = {
   inputAnswer,
 };
+
+AnswerOptions.propTypes = {
+  answer: PropTypes.string.isRequired,
+  inputAnswer: PropTypes.func.isRequired,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(AnswerOptions);

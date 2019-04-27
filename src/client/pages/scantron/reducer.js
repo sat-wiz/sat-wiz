@@ -6,16 +6,16 @@ import { INPUT_ANSWER } from './constants';
 let answers = new Map();
 
 for (let i = 1; i <= 52; i++) {
-  answers.set([1, i], null);
+  answers.set([1, i], '');
 }
 for (let i = 1; i <= 44; i++) {
-  answers.set([2, i], null);
+  answers.set([2, i], '');
 }
 for (let i = 1; i <= 20; i++) {
-  answers.set([3, i], null);
+  answers.set([3, i], '');
 }
 for (let i = 1; i <= 38; i++) {
-  answers.set([4, i], null);
+  answers.set([4, i], '');
 }
 
 const initialState = { answers: answers };
