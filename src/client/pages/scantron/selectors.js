@@ -1,47 +1,27 @@
 import { createSelector } from 'reselect'
 
-const scantronSelector = store => store.scantron.answers;
+//These selector variables are using reselect syntax
+const sectionOneSelector = store => store.scantron.sectionOne;
+const sectionTwoSelector = store => store.scantron.sectionTwo;
+const sectionThreeSelector = store => store.scantron.sectionThree;
+const sectionFourSelector = store => store.scantron.sectionFour;
 
 export const sectionOneKeysSelector = createSelector(
-  scantronSelector,
-  (scantron) =>  {
-    let sectionOne = [];
-    for (let key of scantron.keys()) {
-      if (key[0] === 1) sectionOne.push(key);
-    }
-    return sectionOne;
-  }
+  sectionOneSelector,
+  (sectionOne) => Object.keys(sectionOne)
 )
 
 export const sectionTwoKeysSelector = createSelector(
-  scantronSelector,
-  (scantron) =>  {
-    let sectionTwo = [];
-    for (let key of scantron.keys()) {
-      if (key[0] === 1) sectionTwo.push(key);
-    }
-    return sectionTwo;
-  }
+  sectionTwoSelector,
+  (sectionTwo) => Object.keys(sectionTwo)
 );
 
 export const sectionThreeKeysSelector = createSelector(
-  scantronSelector,
-  (scantron) =>  {
-    let sectionThree = [];
-    for (let key of scantron.keys()) {
-      if (key[0] === 1) sectionThree.push(key);
-    }
-    return sectionThree;
-  }
+  sectionThreeSelector,
+  (sectionThree) => Object.keys(sectionThree)
 );
 
 export const sectionFourKeysSelector = createSelector(
-  scantronSelector,
-  (scantron) =>  {
-    let sectionFour = [];
-    for (let key of scantron.keys()) {
-      if (key[0] === 1) sectionFour.push(key);
-    }
-    return sectionFour;
-  }
+  sectionFourSelector,
+  (sectionFour) => Object.keys(sectionFour)
 );
