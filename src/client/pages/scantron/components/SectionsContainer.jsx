@@ -6,10 +6,10 @@ import { sectionOneKeysSelector, sectionTwoKeysSelector, sectionThreeKeysSelecto
 //import order: library -> components -> props
 
 function SectionsContainer({ currentSection, sectionOne, sectionTwo, sectionThree, sectionFour }) {
-  const sectionOneList = sectionOne.map((key) => <AnswerOptions key={`${key}`} sectionNum={key[0]} questionNum={key[1]} />);
-  const sectionTwoList = sectionTwo.map((key) => <AnswerOptions key={`${key}`} sectionNum={key[0]} questionNum={key[1]} />);
-  const sectionThreeList = sectionThree.map((key) => <AnswerOptions key={`${key}`} sectionNum={key[0]} questionNum={key[1]} />);
-  const sectionFourList = sectionFour.map((key) => <AnswerOptions key={`${key}`} sectionNum={key[0]} questionNum={key[1]} />);
+  const sectionOneList = sectionOne.map((key) => <AnswerOptions key={`s1-${key[1]}`} sectionNum={key[0]} questionNum={key[1]} />);
+  const sectionTwoList = sectionTwo.map((key) => <AnswerOptions key={`s2-${key[1]}`} sectionNum={key[0]} questionNum={key[1]} />);
+  const sectionThreeList = sectionThree.map((key) => <AnswerOptions key={`s3-${key[1]}`} sectionNum={key[0]} questionNum={key[1]} />);
+  const sectionFourList = sectionFour.map((key) => <AnswerOptions key={`s4-${key[1]}`} sectionNum={key[0]} questionNum={key[1]} />);
   
   //conditional rendering of sections based on currentSecion prop
   const SECTION_LISTS = {
