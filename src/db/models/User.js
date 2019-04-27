@@ -1,21 +1,21 @@
-'use strict';
+// const Sequelize = require('sequelize');
+// const db = require('./initialDB');
 
-const Sequelize = require('sequelize');
-const db = require('./initialDB');
-
-const User = db.define('user', {
-  id: {
-    type: Sequelize.INTEGER,
-    autoincrement: true,
-    primaryKey: true,
-  },
-  firstName: {
-    type: Sequelize.STRING
-  },
-  lastName: {
-    type: Sequelize.STRING
-  },
-
-})
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define('User', {
+    id: {
+      type: DataTypes.INTEGER,
+      autoincrement: true,
+      primaryKey: true,
+    },
+    firstName: {
+      type: DataTypes.STRING
+    },
+    lastName: {
+      type: DataTypes.STRING
+    }
+  })
+  return User;
+}
 
 module.exports = User;

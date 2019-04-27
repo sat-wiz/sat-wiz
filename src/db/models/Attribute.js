@@ -3,7 +3,7 @@
 
 module.exports = (sequelize, DataTypes) => {
   const Attribute = sequelize.define('Attribute', {
-    attribs: {
+    attrib: {
       type: Sequelize.STRING
     },
     referenceCode: {
@@ -15,4 +15,3 @@ module.exports = (sequelize, DataTypes) => {
   return Attribute;
 }
 
-module.exports = Attributes;
