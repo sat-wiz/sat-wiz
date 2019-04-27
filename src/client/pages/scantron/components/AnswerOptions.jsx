@@ -12,6 +12,7 @@ function AnswerOptions({ sectionNum, questionNum, answer }) {
   );
 }
 
+//prevent unnecessary rerendering of entire list after updating an answer
 const mapStateToProps = (store, ownProps) => ({
   answer: store.scantron[[ownProps.sectionNum, ownProps.questionNum]],
 });
