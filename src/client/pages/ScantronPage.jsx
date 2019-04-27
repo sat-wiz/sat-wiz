@@ -1,10 +1,10 @@
 import React from 'react';
-import ScantronContainer from './scantron/components/ScantronContainer';
+import SectionsContainer from './scantron/components/SectionsContainer';
 
 function ScantronPage() {
   return (
     <>
-      <ScantronContainer />
+      <SectionsContainer />
     </>
   );
 }

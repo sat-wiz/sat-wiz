@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import AnswerOptions from './AnswerOptions'
 import { sectionOneKeysSelector, sectionTwoKeysSelector, sectionThreeKeysSelector, sectionFourKeysSelector } from '../selectors';
 
-function ScantronContainer({ currentSection, sectionOne, sectionTwo, sectionThree, sectionFour }) {
+function SectionsContainer({ currentSection, sectionOne, sectionTwo, sectionThree, sectionFour }) {
   const sectionOneList = sectionOne.map((key) => <AnswerOptions key={`${key}`} sectionNum={key[0]} questionNum={key[1]} />);
   const sectionTwoList = sectionTwo.map((key) => <AnswerOptions key={`${key}`} sectionNum={key[0]} questionNum={key[1]} />);
   const sectionThreeList = sectionThree.map((key) => <AnswerOptions key={`${key}`} sectionNum={key[0]} questionNum={key[1]} />);
@@ -34,7 +34,7 @@ const mapStateToProps = store => ({
   currentSection: store.scantron.currentSection,
 });
 
-ScantronContainer.propTypes = {
+SectionsContainer.propTypes = {
   sectionOne: PropTypes.array.isRequired,
   sectionTwo: PropTypes.array.isRequired,
   sectionThree: PropTypes.array.isRequired,
@@ -42,4 +42,4 @@ ScantronContainer.propTypes = {
   currentSection: PropTypes.number.isRequired,
 }
 
-export default connect(mapStateToProps)(ScantronContainer);
+export default connect(mapStateToProps)(SectionsContainer);
