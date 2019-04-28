@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 
 //if not using object destructing we would pass props as a parameter to SectionsContainer functional component.
-function SectionsContainer({ currentSection, sectionOne, sectionTwo, sectionThree, sectionFour }) {
+const SectionsContainer => ({ currentSection, sectionOne, sectionTwo, sectionThree, sectionFour }) {
   const sectionOneList = sectionOne.map((key) => <AnswerOptions key={`${key}`} sectionNum={1} questionNum={key} />);
   const sectionTwoList = sectionTwo.map((key) => <AnswerOptions key={`${key}`} sectionNum={2} questionNum={key} />);
   const sectionThreeList = sectionThree.map((key) => <AnswerOptions key={`${key}`} sectionNum={3} questionNum={key} />);

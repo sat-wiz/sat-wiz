@@ -1,7 +1,7 @@
 import React from 'react';
 import SectionsContainer from './scantron/components/SectionsContainer';
 
-function ScantronPage() {
+const ScantronPage = () => {
   return (
     <>
       <SectionsContainer />

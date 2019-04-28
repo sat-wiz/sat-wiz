@@ -5,7 +5,7 @@ import ScantronPage from './pages/ScantronPage'
 import AnalyticsPage from './pages/AnalyticsPage'
 
 //uppermost components are pages that represent the entire page of a specific routex
-function App() {
+const App = () => {
   return (
     <Router>
       <Switch>
