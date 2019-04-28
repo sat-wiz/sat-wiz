@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 
 //if not using object destructing we would pass props as a parameter to SectionsContainer functional component.
-const SectionsContainer => ({ currentSection, sectionOne, sectionTwo, sectionThree, sectionFour }) {
+const SectionsContainer  = ({ currentSection, sectionOne, sectionTwo, sectionThree, sectionFour }) => {
   const sectionOneList = sectionOne.map((key) => <AnswerOptions key={`${key}`} sectionNum={1} questionNum={key} />);
   const sectionTwoList = sectionTwo.map((key) => <AnswerOptions key={`${key}`} sectionNum={2} questionNum={key} />);
   const sectionThreeList = sectionThree.map((key) => <AnswerOptions key={`${key}`} sectionNum={3} questionNum={key} />);
@@ -24,20 +24,13 @@ const SectionsContainer => ({ currentSection, sectionOne, sectionTwo, sectionThr
   
   return (
     <>
-      <Scantron>Scantron - YEEET PROGRESS :C</Scantron>
-      <Section>Section: {currentSection} </Section>
+      <SectionHeader>Section: {currentSection} </SectionHeader>
       {SECTION_LISTS[currentSection]}
     </>
   );
 }
 
-//memoized selectors using reselect
-const Scantron = styled.h1`
-  font-size: 3em;
-  color: pink;
-  
-`
-const Section = styled.h3`
+const SectionHeader = styled.h3`
   font-size: 2em;
   color: palevioletred;
   
