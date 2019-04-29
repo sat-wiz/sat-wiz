@@ -53,6 +53,7 @@ class AnswerOptions extends React.Component {
       4: 'D',
     };
     if (key === '1' || key === '2' || key === '3' || key === '4' ) {
+      console.log('hi')
       this.props.setInputAnswer(sectionNum, questionNum, KEY_MAP[key])
     };
   }
