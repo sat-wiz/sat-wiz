@@ -9,12 +9,16 @@ import styled from 'styled-components';
 
 //if not using object destructing we would pass props as a parameter to SectionsContainer functional component.
 const SectionsContainer  = ({ sectionOneQuestions, sectionTwoQuestions, sectionThreeQuestions, sectionFourQuestions }) => {
+  //creating local state for currentSection because no other components need it
   const [currentSection, setCurrentSection] = useState(1);
 
   const createSectionList = (questions) => {
-    return questions.map((question) => <AnswerOptions key={`s${currentSection}-${question}`} sectionNum={currentSection} questionNum={question}/>)
+    return questions.map((question) => <AnswerOptions key={`s${currentSection}-${question}`} 
+                                                      sectionNum={currentSection} 
+                                                      questionNum={question}/>)
   }
   
+  //created for conditional rendering of sections
   const SECTIONS_MAP = {
     1: sectionOneQuestions,
     2: sectionTwoQuestions,

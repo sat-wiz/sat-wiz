@@ -14,6 +14,8 @@ class AnswerOptions extends React.Component {
 
   componentDidMount = () => {
     let refNode = this.questionRef.current;
+    //because we're attaching the ref to all questions, need to select the first question by using .parentNode 
+    //which is the div in the sections container and select the second element which is the first question
     refNode.parentNode.children[1].focus(); 
     this.moveFocus(refNode);
   }
@@ -26,6 +28,7 @@ class AnswerOptions extends React.Component {
       if (keyCode === 40 || 38) {
         e.preventDefault();
       }
+      console.log(this.props.currentQuestion)
       //move to next question on pressing 1,2,3,4 or down key
       if((keyCode === 49 || keyCode === 50 || keyCode === 51 ||
           keyCode === 52 || keyCode === 40) && active.nextSibling) {
@@ -100,7 +103,8 @@ const SECTIONS = {
   4: 'sectionFour'
 }
 
-//prevent unnecessary rerendering of entire list after updating an answer
+//prevent unnecessary rerendering of entire list after updating an answer by connecting directly to the store
+//instead of passing those props from the parent component
 const mapStateToProps = (store, ownProps) => ({
   currentQuestion: store.scantron.currentQuestion,
   answer: getAnswer(store, SECTIONS[ownProps.sectionNum], ownProps.questionNum),
