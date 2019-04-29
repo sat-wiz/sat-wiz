@@ -15,13 +15,15 @@ class AnswerOptions extends React.Component {
   }
 
   componentDidMount() {
-    this.moveFocus();
+    const node = this.questionRef.current;
+    node.parentNode.children[1].focus();
+    this.moveFocus(node);
   }
 
-  moveFocus() {
-    const node = this.questionRef.current;
-
-    node.addEventListener('keydown', function(e) {
+  //TODO: refactor moveFocus and handleKeyDown into parent component
+  //TODO: make bubble clickable
+  moveFocus(node) {
+    node.addEventListener('keydown', (e) => {
       const active = document.activeElement;
 
       //prevent scoll down or scroll up
@@ -29,7 +31,8 @@ class AnswerOptions extends React.Component {
         e.preventDefault();
       }
       //move to next question on pressing 1,2,3,4 or down key
-      if((e.keyCode === 49 || e.keyCode === 50 || e.keyCode === 51 || e.keyCode === 52 || e.keyCode === 40) && active.nextSibling) {
+      if((e.keyCode === 49 || e.keyCode === 50 || e.keyCode === 51 ||
+          e.keyCode === 52 || e.keyCode === 40) && active.nextSibling) {
         active.nextSibling.focus();
       }
       //move to prev question on pressing up key
@@ -39,7 +42,7 @@ class AnswerOptions extends React.Component {
     });
   }
 
-  handleKeyDown (e) {
+  handleKeyDown(e) {
     if(e.key === '1') {
       this.props.setInputAnswer(this.props.sectionNum, this.props.questionNum, 'A')
     } else if (e.key === '2') {
@@ -60,10 +63,10 @@ class AnswerOptions extends React.Component {
       <>
         <QuestionWrapper tabIndex={0} ref={ this.questionRef } onKeyDown={ this.handleKeyDown } >
           <AnswerChoicesWrapper>{ questionNum }.</AnswerChoicesWrapper>
-          { answer === 'A' ? (<FilledBubble tabIndex={-1} >A</FilledBubble>) : (<Bubble tabIndex={-1} >A</Bubble>) }
-          { answer === 'B' ? (<FilledBubble tabIndex={-1} >B</FilledBubble>) : (<Bubble tabIndex={-1} >B</Bubble>) }
-          { answer === 'C' ? (<FilledBubble tabIndex={-1} >C</FilledBubble>) : (<Bubble tabIndex={-1} >C</Bubble>) }
-          { answer === 'D' ? (<FilledBubble tabIndex={-1} >D</FilledBubble>) : (<Bubble tabIndex={-1} >D</Bubble>) }
+          { answer === 'A' ? (<FilledBubble >A</FilledBubble>) : (<Bubble >A</Bubble>) }
+          { answer === 'B' ? (<FilledBubble >B</FilledBubble>) : (<Bubble >B</Bubble>) }
+          { answer === 'C' ? (<FilledBubble >C</FilledBubble>) : (<Bubble >C</Bubble>) }
+          { answer === 'D' ? (<FilledBubble >D</FilledBubble>) : (<Bubble >D</Bubble>) }
         </QuestionWrapper>
       </>
     )
@@ -79,23 +82,21 @@ const AnswerChoicesWrapper = styled.strong`
   margin: 0.5em;
   padding: 0.25em 1em;
 `
-const Bubble = styled.button`
+const Bubble = styled.span`
   font-size: 1em;
   margin: 0.5em;
   padding: 0.25em 1em;
   border: 2px solid palevioletred;
   border-radius: 20px;
   background-color: white;
+  cursor: pointer;
+  user-select: none;
 `
-const FilledBubble = styled.button`
-  font-size: 1em;
-  margin: 0.5em;
-  padding: 0.25em 1em;
-  border: 2px solid palevioletred;
-  border-radius: 20px;
+const FilledBubble = styled(Bubble)`
   background-color: palevioletred;
   font-color: white;
 `
+
 const SECTIONS = {
   1: 'sectionOne',
   2: 'sectionTwo',

@@ -9,10 +9,10 @@ import styled from 'styled-components';
 
 //if not using object destructing we would pass props as a parameter to SectionsContainer functional component.
 const SectionsContainer  = ({ currentSection, sectionOne, sectionTwo, sectionThree, sectionFour }) => {
-  const sectionOneList = sectionOne.map((key) => <AnswerOptions key={`${key}`} sectionNum={1} questionNum={key} />);
-  const sectionTwoList = sectionTwo.map((key) => <AnswerOptions key={`${key}`} sectionNum={2} questionNum={key} />);
-  const sectionThreeList = sectionThree.map((key) => <AnswerOptions key={`${key}`} sectionNum={3} questionNum={key} />);
-  const sectionFourList = sectionFour.map((key) => <AnswerOptions key={`${key}`} sectionNum={4} questionNum={key} />);
+  const sectionOneList = sectionOne.map((key) => <AnswerOptions key={`s1-${key}`} sectionNum={1} questionNum={key} />);
+  const sectionTwoList = sectionTwo.map((key) => <AnswerOptions key={`s2-${key}`} sectionNum={2} questionNum={key} />);
+  const sectionThreeList = sectionThree.map((key) => <AnswerOptions key={`s3-${key}`} sectionNum={3} questionNum={key} />);
+  const sectionFourList = sectionFour.map((key) => <AnswerOptions key={`s4-${key}`} sectionNum={4} questionNum={key} />);
   
   //conditional rendering of sections based on currentSecion prop
   const SECTION_LISTS = {
@@ -23,10 +23,10 @@ const SectionsContainer  = ({ currentSection, sectionOne, sectionTwo, sectionThr
   }
   
   return (
-    <>
+    <div>
       <SectionHeader>Section: {currentSection} </SectionHeader>
       {SECTION_LISTS[currentSection]}
-    </>
+    </div>
   );
 }
 
