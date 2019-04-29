@@ -14,17 +14,17 @@ export const setInputAnswer = (sectionNum, questionNum, answer) => ({
   answer,
 });
 
-export const setCurrentQuestion = (nextQuestionNum) => {
+export const setCurrentQuestion = (nextQuestionNum) => ({
   type: actionTypes.UPDATE_CURRENT_QUESTION,
   nextQuestionNum,
-}
+})
 
 //selectors
 const getSectionOne = store => store.scantron.sectionOne;
 const getSectionTwo = store => store.scantron.sectionTwo;
 const getSectionThree = store => store.scantron.sectionThree;
 const getSectionFour = store => store.scantron.sectionFour;
-const getQuestions = (section) => Object.Questions(section).map(questionNum => parseInt(questionNum))
+const getQuestions = (section) => Object.keys(section).map(questionNum => parseInt(questionNum))
 
 
 export const getAnswer = (store, section, questionNum) => store.scantron[section][questionNum];

@@ -22,7 +22,6 @@ const initialState = {
   sectionThree: sectionThree,
   sectionFour: sectionFour,
 
-  currentSection: 1,
   currentQuestion: 1,
 };
 
@@ -49,14 +48,13 @@ const reducer = (state=initialState, action) => {
         ...state,
         [sectionKey] : newSection
       };
-
+    
     case actionTypes.UPDATE_CURRENT_QUESTION:
-      let currentQuestion = action.nextQuestionNum;
       return {
         ...state,
-        currentQuestion,
+        currentQuestion: actionTypes.nextQuestionNum,
       }
-    
+      
     default:
       return state;
   }

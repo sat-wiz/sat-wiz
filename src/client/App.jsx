@@ -9,7 +9,6 @@ const AnalyticsPage = lazy(() => import('./pages/AnalyticsPage'))
 //uppermost components are pages that represent the entire page of a specific routex
 const App = () => {
   return (
-    <React.StrictMode>
     <Router>
       <NavBar/>
       <Switch>
@@ -20,7 +19,6 @@ const App = () => {
         </Suspense>
       </Switch>
     </Router>
-    </React.StrictMode>
   );
 }
 

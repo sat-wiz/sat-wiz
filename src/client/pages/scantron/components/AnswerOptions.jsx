@@ -1,76 +1,69 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getAnswer, setInputAnswer } from '../actions'
+import { getAnswer, setCurrentQuestion, setInputAnswer } from '../actions'
 import styled from 'styled-components';
-
 
 class AnswerOptions extends React.Component {
   constructor(props) {
-    super(props)
-    
+    super(props);
+
     this.questionRef = React.createRef();
     this.moveFocus = this.moveFocus.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
-  componentDidMount() {
-    const node = this.questionRef.current;
-    node.parentNode.children[1].focus();
-    this.moveFocus(node);
+  componentDidMount = () => {
+    let refNode = this.questionRef.current;
+    refNode.parentNode.children[1].focus(); 
+    console.log(refNode.parentNode.children[1]); 
+    this.moveFocus(refNode);
   }
-
-  //TODO: refactor moveFocus and handleKeyDown into parent component
-  //TODO: make bubble
-  moveFocus(node) {
+  
+  moveFocus = (node) => {
     node.addEventListener('keydown', (e) => {
-      const active = document.activeElement;
-
+      let active = document.activeElement;
+      let { keyCode } = e;
       //prevent scoll down or scroll up
-      if (e.keyCode === 40 || 38) {
+      if (keyCode === 40 || 38) {
         e.preventDefault();
       }
       //move to next question on pressing 1,2,3,4 or down key
-      if((e.keyCode === 49 || e.keyCode === 50 || e.keyCode === 51 ||
-          e.keyCode === 52 || e.keyCode === 40) && active.nextSibling) {
+      if((keyCode === 49 || keyCode === 50 || keyCode === 51 ||
+          keyCode === 52 || keyCode === 40) && active.nextSibling) {
         active.nextSibling.focus();
-        this.props.setCurrentQuestion(this.props.questionNum + 1)
+        this.props.setCurrentQuestion(this.props.currentQuestion + 1)
       }
       //move to prev question on pressing up key
-      if(e.keyCode === 38 && active.previousSibling) {
+      if(keyCode === 38 && active.previousSibling) {
         active.previousSibling.focus();
-        this.props.setCurrentQuestion(this.props.questionNum - 1)
+        this.props.setCurrentQuestion(this.props.currentQuestion - 1)
       }
     });
   }
 
-  handleKeyDown(e) {
-    if(e.key === '1') {
-      this.props.setInputAnswer(this.props.sectionNum, this.props.questionNum, 'A')
-    } else if (e.key === '2') {
-      this.props.setInputAnswer(this.props.sectionNum, this.props.questionNum, 'B')
+  handleKeyDown = (e, sectionNum, questionNum) => {
+    let { key } = e;
+    const KEY_MAP = {
+      1: 'A',
+      2: 'B',
+      3: 'C',
+      4: 'D',
     }
-    else if (e.key === '3') {
-      this.props.setInputAnswer(this.props.sectionNum, this.props.questionNum, 'C')
-    }
-    else if (e.key === '4') {
-      this.props.setInputAnswer(this.props.sectionNum, this.props.questionNum, 'D')
-    }
+    if (key === '1' || key === '2' || key === '3' || key === '4' ) this.props.setInputAnswer(sectionNum, questionNum, KEY_MAP[key])
   }
 
-  render() {
-    const { sectionNum, currentQuestion, questionNum, answer } = this.props;
-
+  render = () => {
+    const { currentQuestion, sectionNum, questionNum, answer } = this.props;
+    
     return (
-      <>
-        <QuestionWrapper tabIndex={0} ref={ this.questionRef } onKeyDown={ this.handleKeyDown } isHighlight={currentQuestion === questionNum}>
-          <AnswerChoicesWrapper>{ questionNum }.</AnswerChoicesWrapper>
-          { answer === 'A' ? (<FilledBubble >A</FilledBubble>) : (<Bubble >A</Bubble>) }
-          { answer === 'B' ? (<FilledBubble >B</FilledBubble>) : (<Bubble >B</Bubble>) }
-          { answer === 'C' ? (<FilledBubble >C</FilledBubble>) : (<Bubble >C</Bubble>) }
-          { answer === 'D' ? (<FilledBubble >D</FilledBubble>) : (<Bubble >D</Bubble>) }
-        </QuestionWrapper>
-      </>
+      <QuestionWrapper ref={ this.questionRef } tabIndex={0} onKeyDown={ (e) => this.handleKeyDown(e, sectionNum, questionNum) } isHighlighted={ currentQuestion === questionNum }>
+        <AnswerChoicesWrapper>{ questionNum }.</AnswerChoicesWrapper>
+          <Bubble isFilled={ answer === 'A'}>A</Bubble>
+          <Bubble isFilled={ answer === 'B'}>B</Bubble>
+          <Bubble isFilled={ answer === 'C'}>C</Bubble>
+          <Bubble isFilled={ answer === 'D'}>D</Bubble>
+      </QuestionWrapper>
     )
   }
 }
@@ -78,7 +71,7 @@ class AnswerOptions extends React.Component {
 const QuestionWrapper = styled.div`
   display: flex; 
   flex-wrap: nowrap;
-  background-color: ${({isHighlight}) => isHighlight ? 'dodgerblue' : 'transparent'}
+  background-color: ${({ isHighlighted }) => isHighlighted ? 'powderblue' : 'transparent'}
 `
 const AnswerChoicesWrapper = styled.strong`
   font-size: 1em;
@@ -91,13 +84,10 @@ const Bubble = styled.span`
   padding: 0.25em 1em;
   border: 2px solid palevioletred;
   border-radius: 20px;
-  background-color: white;
+  background-color: ${({ isFilled }) => isFilled ? 'palevioletred' : 'white'};
+  font-color: ${({ isFilled }) => isFilled ? 'white' : 'black'};
   cursor: pointer;
   user-select: none;
-`
-const FilledBubble = styled(Bubble)`
-  background-color: palevioletred;
-  font-color: white;
 `
 
 const SECTIONS = {
@@ -109,10 +99,12 @@ const SECTIONS = {
 
 //prevent unnecessary rerendering of entire list after updating an answer
 const mapStateToProps = (store, ownProps) => ({
+  currentQuestion: store.scantron.currentQuestion,
   answer: getAnswer(store, SECTIONS[ownProps.sectionNum], ownProps.questionNum),
 });
 
 const mapDispatchToProps = {
+  setCurrentQuestion,
   setInputAnswer,
 };
 
