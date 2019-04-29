@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     attrib: {
       type: DataTypes.STRING
     },
-    referenceCode: {
+    referencecode: {
       type: DataTypes.INTEGER,
       autoincrement: true,
       primaryKey: true,
