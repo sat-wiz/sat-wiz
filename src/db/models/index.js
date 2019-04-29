@@ -15,11 +15,11 @@ pool: {
 const Question = require('./Question')
 
 const models = {
-  question: new Question
-    // sequelize.import('./Question'),
+  question:
+    // new Question
+    sequelize.import('./Question'),
 
 };
-
 
 
 Object.keys(models).forEach(modelName => {

@@ -1,7 +1,8 @@
 const Question = require('../models').Question;
 
 module.exports = {
-  create(req, res) {
+  addAnswer(req, res) {
+    console.log('\n\nhello from controller\n\n')
     return Question
       .create({
         answer: req.body.answer,
