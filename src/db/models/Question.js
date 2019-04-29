@@ -22,7 +22,7 @@ const db = require('./db');
 
 // module.exports = Question;
 module.exports = (sequelize, DataTypes) => {
-  const Question = sequelize.define('question', {
+  const Question = sequelize.define('Question', {
     testId: {
       type: DataTypes.STRING,
     },
@@ -37,5 +37,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     }
   });
+
+  Question.associate = (models)=>{
+    models.Question.hasMany(models.Attribute)
+  }
   return Question;
 }

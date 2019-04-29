@@ -1,9 +1,9 @@
-// const DataTypes = require('DataTypes');
+const Sequelize = require('sequelize');
 // const db = require('./initialDB');
 
-module.exports = (DataTypes, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
  
-  const TestSession = DataTypes.define('TestSession', {
+  const TestSession = sequelize.define('TestSession', {
     sessionTime: {
       type: DataTypes.DATE
     },

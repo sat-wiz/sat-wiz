@@ -12,6 +12,7 @@ db.authenticate()
     .then(() => console.log('Database connected...'))
     .catch(err => console.log('Error: ' + err))
 
+// Sync DB on start. {force: true} drops DB if it exists (use for dev)
 models.sequelize.sync({force: true})
     .then(() => {
     app.listen(3000, () => {
@@ -21,9 +22,6 @@ models.sequelize.sync({force: true})
 
 app.use('/test',
     require('./routes/_index.js')
-    // () => {
-    //     console.log('hi')
-    // }
 );
 
 app.get('/', function(req,res) {

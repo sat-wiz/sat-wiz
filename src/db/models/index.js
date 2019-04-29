@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('satwiz', 'satwiz', 'satwiz',
+const sequelize = new Sequelize('satwiz', 'satwiz', '',
 {host: 'localhost',
 dialect: 'postgres',
 operatorsAliases: false,
@@ -12,16 +12,17 @@ pool: {
     }
   })
 
-const Question = require('./Question')
+// const Question = require('./Question')
 
+// Pull all models into single "models" object
 const models = {
-  question:
-    // new Question
-    sequelize.import('./Question'),
-
+  User: sequelize.import('./User'),
+  TestSession: sequelize.import('./TestSession'),
+  Question: sequelize.import('./Question'),
+  Attribute: sequelize.import('./Attribute'),
 };
 
-
+// Sync associations
 Object.keys(models).forEach(modelName => {
   if ('associate' in models[modelName]) {
     models[modelName].associate(models);

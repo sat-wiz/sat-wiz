@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     id: {
       type: DataTypes.INTEGER,
+      dafaultValue: 1,
       autoincrement: true,
       primaryKey: true,
     },
@@ -14,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
     lastName: {
       type: DataTypes.STRING
     }
-  })
+  });
+
+  User.associate = (models) => {
+models.User.hasMany(models.TestSession)
+  }
   return User;
 }
