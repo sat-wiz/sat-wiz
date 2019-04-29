@@ -65,7 +65,7 @@ const SectionHeader = styled.h3`
 const SectionButtons = styled.button`
 border: none;
 background: palevioletred
-color: white;
+color: blue;
 padding: 5px;
 text-transform: uppercase;
 border-radius: 6px;
