@@ -21,7 +21,7 @@ const initialState = {
   sectionTwo: sectionTwo,
   sectionThree: sectionThree,
   sectionFour: sectionFour,
-
+  
   currentQuestion: 1,
 };
 

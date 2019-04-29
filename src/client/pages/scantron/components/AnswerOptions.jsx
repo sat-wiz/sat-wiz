@@ -7,7 +7,6 @@ import styled from 'styled-components';
 class AnswerOptions extends React.Component {
   constructor(props) {
     super(props);
-
     this.questionRef = React.createRef();
     this.moveFocus = this.moveFocus.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -16,7 +15,6 @@ class AnswerOptions extends React.Component {
   componentDidMount = () => {
     let refNode = this.questionRef.current;
     refNode.parentNode.children[1].focus(); 
-    console.log(refNode.parentNode.children[1]); 
     this.moveFocus(refNode);
   }
   
@@ -49,8 +47,10 @@ class AnswerOptions extends React.Component {
       2: 'B',
       3: 'C',
       4: 'D',
-    }
-    if (key === '1' || key === '2' || key === '3' || key === '4' ) this.props.setInputAnswer(sectionNum, questionNum, KEY_MAP[key])
+    };
+    if (key === '1' || key === '2' || key === '3' || key === '4' ) {
+      this.props.setInputAnswer(sectionNum, questionNum, KEY_MAP[key])
+    };
   }
 
   render = () => {
