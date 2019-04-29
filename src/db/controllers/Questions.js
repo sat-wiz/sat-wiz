@@ -1,4 +1,4 @@
-// const Question = require('../models').Question;
+const Question = require('../models').Question;
 
 module.exports = {
   create(req, res) {
@@ -6,7 +6,7 @@ module.exports = {
       .create({
         answer: req.body.answer,
       })
-      .then((todo) => res.status(201).send(todo))
+      .then((ans) => res.status(201).send(ans))
       .catch((error) => res.status(400).send(error));
   }
 }

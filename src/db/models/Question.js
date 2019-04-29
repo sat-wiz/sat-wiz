@@ -1,21 +1,38 @@
-// const Sequelize = require('sequelize');
-// const db = require('./initialDB');
+const Sequelize = require('sequelize');
+const db = require('./db');
 
-module.exports = (sequelize, DataTypes) => {
-  const Question = sequelize.define('question', {
+  const Question = db.define('question', {
     testId: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
     },
     questionNum: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.INTEGER,
     },
     attrib: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       defaultValue: null
     },
     answer: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     }
   });
-  return Question;
-}
+
+module.exports = Question;
+// module.exports = (sequelize, DataTypes) => {
+//   const Question = sequelize.define('question', {
+//     testId: {
+//       type: DataTypes.STRING,
+//     },
+//     questionNum: {
+//       type: DataTypes.INTEGER,
+//     },
+//     attrib: {
+//       type: DataTypes.STRING,
+//       defaultValue: null
+//     },
+//     answer: {
+//       type: DataTypes.STRING
+//     }
+//   });
+//   return Question;
+// }

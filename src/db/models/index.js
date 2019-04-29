@@ -9,10 +9,14 @@ pool: {
   min: 0,
   acquire: 30000,
   idle: 10000
-}})
+    }
+  })
+
+const Question = require('./Question')
 
 const models = {
-  question: sequelize.import('./Question'),
+  question: new Question
+    // sequelize.import('./Question'),
 
 };
 
