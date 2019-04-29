@@ -1,4 +1,4 @@
-import { INPUT_ANSWER } from './constants';
+import { actionTypes } from './actions';
 
 //initialize scantron with empty values { [sectionNum, questionNum]: answer }
 let sectionOne  = {}, sectionTwo = {}, sectionThree = {}, sectionFour = {}
@@ -30,7 +30,7 @@ const reducer = (state=initialState, action) => {
   Object.freeze(state);
 
   switch(action.type) {
-    case INPUT_ANSWER:
+    case actionTypes.INPUT_ANSWER:
 
     const SECTIONS = {
       1: 'sectionOne',
@@ -48,10 +48,9 @@ const reducer = (state=initialState, action) => {
     //With new section copy, update the answer for its corresponding question.
     newSection[action.questionNum] = action.answer
 
-    
       return {
         ...state,
-       sectionKey : newSection
+       [sectionKey] : newSection
 
       };
     

@@ -2,27 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AnswerOptions from './AnswerOptions'
-import { sectionOneKeysSelector, sectionTwoKeysSelector, sectionThreeKeysSelector, sectionFourKeysSelector } from '../selectors';
+import { getSectionOneKeys, getSectionTwoKeys, getSectionThreeKeys, getSectionFourKeys } from '../actions';
 //import order: library -> components -> props
 import styled from 'styled-components';
 
 
-
-const Scantron = styled.h1`
-  font-size: 3em;
-  color: pink;
-  
-`
-const Section = styled.h3`
-  font-size: 2em;
-  color: palevioletred;
-  
-`
-
 //if not using object destructing we would pass props as a parameter to SectionsContainer functional component.
-
 function SectionsContainer({ currentSection, sectionOne, sectionTwo, sectionThree, sectionFour }) {
-
   const sectionOneList = sectionOne.map((key) => <AnswerOptions key={`${key}`} sectionNum={1} questionNum={key} />);
   const sectionTwoList = sectionTwo.map((key) => <AnswerOptions key={`${key}`} sectionNum={2} questionNum={key} />);
   const sectionThreeList = sectionThree.map((key) => <AnswerOptions key={`${key}`} sectionNum={3} questionNum={key} />);
@@ -35,9 +21,7 @@ function SectionsContainer({ currentSection, sectionOne, sectionTwo, sectionThre
     3: sectionThreeList,
     4: sectionFourList
   }
-
-
-
+  
   return (
     <>
       <Scantron>Scantron - YEEET PROGRESS :C</Scantron>
@@ -48,11 +32,21 @@ function SectionsContainer({ currentSection, sectionOne, sectionTwo, sectionThre
 }
 
 //memoized selectors using reselect
+const Scantron = styled.h1`
+  font-size: 3em;
+  color: pink;
+  
+`
+const Section = styled.h3`
+  font-size: 2em;
+  color: palevioletred;
+  
+`
 const mapStateToProps = store => ({
-  sectionOne: sectionOneKeysSelector(store),
-  sectionTwo: sectionTwoKeysSelector(store),
-  sectionThree: sectionThreeKeysSelector(store),
-  sectionFour: sectionFourKeysSelector(store),
+  sectionOne: getSectionOneKeys(store),
+  sectionTwo: getSectionTwoKeys(store),
+  sectionThree: getSectionThreeKeys(store),
+  sectionFour: getSectionFourKeys(store),
   currentSection: store.scantron.currentSection,
 });
 
