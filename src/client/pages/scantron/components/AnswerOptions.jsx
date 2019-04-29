@@ -57,7 +57,10 @@ class AnswerOptions extends React.Component {
     const { currentQuestion, sectionNum, questionNum, answer } = this.props;
     
     return (
-      <QuestionWrapper ref={ this.questionRef } tabIndex={0} onKeyDown={ (e) => this.handleKeyDown(e, sectionNum, questionNum) } isHighlighted={ currentQuestion === questionNum }>
+      <QuestionWrapper ref={ this.questionRef } 
+                       tabIndex={0} 
+                       onKeyDown={ (e) => this.handleKeyDown(e, sectionNum, questionNum) } 
+                       isHighlighted={ currentQuestion === questionNum }>
         <AnswerChoicesWrapper>{ questionNum }.</AnswerChoicesWrapper>
           <Bubble isFilled={ answer === 'A'}>A</Bubble>
           <Bubble isFilled={ answer === 'B'}>B</Bubble>
@@ -109,7 +112,9 @@ const mapDispatchToProps = {
 };
 
 AnswerOptions.propTypes = {
+  currentQuestion: PropTypes.number.isRequired,
   answer: PropTypes.string.isRequired,
+  setCurrentQuestion: PropTypes.func.isRequired,
   setInputAnswer: PropTypes.func.isRequired,
 }
 
