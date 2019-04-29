@@ -52,7 +52,7 @@ const reducer = (state=initialState, action) => {
     case actionTypes.UPDATE_CURRENT_QUESTION:
       return {
         ...state,
-        currentQuestion: actionTypes.nextQuestionNum,
+        currentQuestion: action.nextQuestionNum,
       }
       
     default:

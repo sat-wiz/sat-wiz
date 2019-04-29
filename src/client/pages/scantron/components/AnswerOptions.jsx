@@ -26,6 +26,7 @@ class AnswerOptions extends React.Component {
       if (keyCode === 40 || 38) {
         e.preventDefault();
       }
+ 
       //move to next question on pressing 1,2,3,4 or down key
       if((keyCode === 49 || keyCode === 50 || keyCode === 51 ||
           keyCode === 52 || keyCode === 40) && active.nextSibling) {
@@ -91,7 +92,7 @@ const Bubble = styled.span`
   font-color: ${({ isFilled }) => isFilled ? 'white' : 'black'};
   cursor: pointer;
   user-select: none;
-`
+  `
 
 const SECTIONS = {
   1: 'sectionOne',
