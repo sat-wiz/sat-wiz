@@ -1,62 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AnswerOptions from './AnswerOptions'
-import { getSectionOneKeys, getSectionTwoKeys, getSectionThreeKeys, getSectionFourKeys } from '../actions';
+import { getSectionOneQuestions, getSectionTwoQuestions, getSectionThreeQuestions, getSectionFourQuestions } from '../actions';
 //import order: library -> components -> props
 import styled from 'styled-components';
 
 
 //if not using object destructing we would pass props as a parameter to SectionsContainer functional component.
-function SectionsContainer({ currentSection, sectionOne, sectionTwo, sectionThree, sectionFour }) {
-  const sectionOneList = sectionOne.map((key) => <AnswerOptions key={`${key}`} sectionNum={1} questionNum={key} />);
-  const sectionTwoList = sectionTwo.map((key) => <AnswerOptions key={`${key}`} sectionNum={2} questionNum={key} />);
-  const sectionThreeList = sectionThree.map((key) => <AnswerOptions key={`${key}`} sectionNum={3} questionNum={key} />);
-  const sectionFourList = sectionFour.map((key) => <AnswerOptions key={`${key}`} sectionNum={4} questionNum={key} />);
-  
-  //conditional rendering of sections based on currentSecion prop
-  const SECTION_LISTS = {
-    1: sectionOneList,
-    2: sectionTwoList,
-    3: sectionThreeList,
-    4: sectionFourList
+const SectionsContainer  = ({ sectionOneQuestions, sectionTwoQuestions, sectionThreeQuestions, sectionFourQuestions }) => {
+  const [currentSection, setCurrentSection] = useState(1);
+
+  const createSectionList = (questions) => {
+    return questions.map((question) => <AnswerOptions key={`s${currentSection}-${question}`} sectionNum={currentSection} questionNum={question}/>)
   }
   
+  const SECTIONS_MAP = {
+    1: sectionOneQuestions,
+    2: sectionTwoQuestions,
+    3: sectionThreeQuestions,
+    4: sectionFourQuestions,
+  }
+
   return (
-    <>
-      <Scantron>Scantron - YEEET PROGRESS :C</Scantron>
-      <Section>Section: {currentSection} </Section>
-      {SECTION_LISTS[currentSection]}
-    </>
+    <div>
+      <SectionHeader>Section: {currentSection} </SectionHeader>
+      {createSectionList(SECTIONS_MAP[currentSection])}
+    </div>
   );
 }
 
-//memoized selectors using reselect
-const Scantron = styled.h1`
-  font-size: 3em;
-  color: pink;
-  
-`
-const Section = styled.h3`
+const SectionHeader = styled.h3`
   font-size: 2em;
   color: palevioletred;
   
 `
 const mapStateToProps = store => ({
-  sectionOne: getSectionOneKeys(store),
-  sectionTwo: getSectionTwoKeys(store),
-  sectionThree: getSectionThreeKeys(store),
-  sectionFour: getSectionFourKeys(store),
-  currentSection: store.scantron.currentSection,
+  sectionOneQuestions: getSectionOneQuestions(store),
+  sectionTwoQuestions: getSectionTwoQuestions(store),
+  sectionThreeQuestions: getSectionThreeQuestions(store),
+  sectionFourQuestions: getSectionFourQuestions(store),
 });
 
 //type checking for props
 SectionsContainer.propTypes = {
-  sectionOne: PropTypes.array.isRequired,
-  sectionTwo: PropTypes.array.isRequired,
-  sectionThree: PropTypes.array.isRequired,
-  sectionFour: PropTypes.array.isRequired,
-  currentSection: PropTypes.number.isRequired,
+  sectionOneQuestions: PropTypes.array.isRequired,
+  sectionTwoQuestions: PropTypes.array.isRequired,
+  sectionThreeQuestions: PropTypes.array.isRequired,
+  sectionFourQuestions: PropTypes.array.isRequired,
 }
 
 export default connect(mapStateToProps)(SectionsContainer);

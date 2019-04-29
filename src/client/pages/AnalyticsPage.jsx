@@ -1,7 +1,7 @@
 import React from 'react';
 import WritingGraph from './analytics/components/WritingGraph';
 
-function AnalyticsPage() {
+const AnalyticsPage = () => {
   return (
     <>
       <WritingGraph />

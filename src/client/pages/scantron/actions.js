@@ -3,6 +3,7 @@ import { createSelector } from 'reselect'
 //actionTypes
 export const actionTypes = {
   INPUT_ANSWER: 'INPUT_ANSWER',
+  UPDATE_CURRENT_QUESTION: 'UPDATE_CURRENT_QUESTION'
 }
 
 //actions / setters
@@ -13,32 +14,38 @@ export const setInputAnswer = (sectionNum, questionNum, answer) => ({
   answer,
 });
 
+export const setCurrentQuestion = (nextQuestionNum) => ({
+  type: actionTypes.UPDATE_CURRENT_QUESTION,
+  nextQuestionNum,
+})
 
 //selectors
 const getSectionOne = store => store.scantron.sectionOne;
 const getSectionTwo = store => store.scantron.sectionTwo;
 const getSectionThree = store => store.scantron.sectionThree;
 const getSectionFour = store => store.scantron.sectionFour;
+const getQuestions = (section) => Object.keys(section).map(questionNum => parseInt(questionNum))
+
 
 export const getAnswer = (store, section, questionNum) => store.scantron[section][questionNum];
 
 //memoized selectors using reselect library
-export const getSectionOneKeys = createSelector(
+export const getSectionOneQuestions = createSelector(
   getSectionOne,
-  (sectionOne) => Object.keys(sectionOne)
+  getQuestions
 )
 
-export const getSectionTwoKeys = createSelector(
+export const getSectionTwoQuestions = createSelector(
   getSectionTwo,
-  (sectionTwo) => Object.keys(sectionTwo)
+  getQuestions
 );
 
-export const getSectionThreeKeys = createSelector(
+export const getSectionThreeQuestions = createSelector(
   getSectionThree,
-  (sectionThree) => Object.keys(sectionThree)
+  getQuestions
 );
 
-export const getSectionFourKeys = createSelector(
+export const getSectionFourQuestions = createSelector(
   getSectionFour,
-  (sectionFour) => Object.keys(sectionFour)
+  getQuestions
 );
