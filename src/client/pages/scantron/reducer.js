@@ -23,6 +23,7 @@ const initialState = {
   sectionFour: sectionFour,
 
   currentSection: 1,
+  currentQuestion: 1,
 };
 
 const reducer = (state=initialState, action) => {
@@ -31,28 +32,30 @@ const reducer = (state=initialState, action) => {
 
   switch(action.type) {
     case actionTypes.INPUT_ANSWER:
+      const SECTIONS = {
+        1: 'sectionOne',
+        2: 'sectionTwo',
+        3: 'sectionThree',
+        4: 'sectionFour'
+      }
 
-    const SECTIONS = {
-      1: 'sectionOne',
-      2: 'sectionTwo',
-      3: 'sectionThree',
-      4: 'sectionFour'
-    }
-
-    //Declare which section we will be working with
-    let sectionKey = SECTIONS[action.sectionNum];
-
-    //Make a copy of the original section (we do not mutate original state);
-    let newSection = {...state[sectionKey]};
-
-    //With new section copy, update the answer for its corresponding question.
-    newSection[action.questionNum] = action.answer
-
+      //Declare which section we will be working with
+      let sectionKey = SECTIONS[action.sectionNum];
+      //Make a copy of the original section (we do not mutate original state);
+      let newSection = {...state[sectionKey]};
+      //With new section copy, update the answer for its corresponding question.
+      newSection[action.questionNum] = action.answer
       return {
         ...state,
-       [sectionKey] : newSection
-
+        [sectionKey] : newSection
       };
+
+    case actionTypes.UPDATE_CURRENT_QUESTION:
+      let currentQuestion = action.nextQuestionNum;
+      return {
+        ...state,
+        currentQuestion,
+      }
     
     default:
       return state;

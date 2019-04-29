@@ -21,7 +21,7 @@ class AnswerOptions extends React.Component {
   }
 
   //TODO: refactor moveFocus and handleKeyDown into parent component
-  //TODO: make bubble clickable
+  //TODO: make bubble
   moveFocus(node) {
     node.addEventListener('keydown', (e) => {
       const active = document.activeElement;
@@ -34,10 +34,12 @@ class AnswerOptions extends React.Component {
       if((e.keyCode === 49 || e.keyCode === 50 || e.keyCode === 51 ||
           e.keyCode === 52 || e.keyCode === 40) && active.nextSibling) {
         active.nextSibling.focus();
+        this.props.setCurrentQuestion(this.props.questionNum + 1)
       }
       //move to prev question on pressing up key
       if(e.keyCode === 38 && active.previousSibling) {
         active.previousSibling.focus();
+        this.props.setCurrentQuestion(this.props.questionNum - 1)
       }
     });
   }
@@ -57,11 +59,11 @@ class AnswerOptions extends React.Component {
   }
 
   render() {
-    const { sectionNum, questionNum, answer } = this.props;
+    const { sectionNum, currentQuestion, questionNum, answer } = this.props;
 
     return (
       <>
-        <QuestionWrapper tabIndex={0} ref={ this.questionRef } onKeyDown={ this.handleKeyDown } >
+        <QuestionWrapper tabIndex={0} ref={ this.questionRef } onKeyDown={ this.handleKeyDown } isHighlight={currentQuestion === questionNum}>
           <AnswerChoicesWrapper>{ questionNum }.</AnswerChoicesWrapper>
           { answer === 'A' ? (<FilledBubble >A</FilledBubble>) : (<Bubble >A</Bubble>) }
           { answer === 'B' ? (<FilledBubble >B</FilledBubble>) : (<Bubble >B</Bubble>) }
@@ -73,9 +75,10 @@ class AnswerOptions extends React.Component {
   }
 }
 
-const QuestionWrapper = styled.section`
+const QuestionWrapper = styled.div`
   display: flex; 
   flex-wrap: nowrap;
+  background-color: ${({isHighlight}) => isHighlight ? 'dodgerblue' : 'transparent'}
 `
 const AnswerChoicesWrapper = styled.strong`
   font-size: 1em;

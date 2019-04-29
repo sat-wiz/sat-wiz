@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AnswerOptions from './AnswerOptions'
-import { getSectionOneKeys, getSectionTwoKeys, getSectionThreeKeys, getSectionFourKeys } from '../actions';
+import { getSectionOneQuestions, getSectionTwoQuestions, getSectionThreeQuestions, getSectionFourQuestions } from '../actions';
 //import order: library -> components -> props
 import styled from 'styled-components';
 
 
 //if not using object destructing we would pass props as a parameter to SectionsContainer functional component.
 const SectionsContainer  = ({ currentSection, sectionOne, sectionTwo, sectionThree, sectionFour }) => {
-  const sectionOneList = sectionOne.map((key) => <AnswerOptions key={`s1-${key}`} sectionNum={1} questionNum={key} />);
-  const sectionTwoList = sectionTwo.map((key) => <AnswerOptions key={`s2-${key}`} sectionNum={2} questionNum={key} />);
-  const sectionThreeList = sectionThree.map((key) => <AnswerOptions key={`s3-${key}`} sectionNum={3} questionNum={key} />);
-  const sectionFourList = sectionFour.map((key) => <AnswerOptions key={`s4-${key}`} sectionNum={4} questionNum={key} />);
+  const [currentQuestion, setCurrentQuestion] = useState(1);
+  const sectionOneList = sectionOne.map((key) => <AnswerOptions key={`s1-${key}`} sectionNum={1} questionNum={key} currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion} />);
+  const sectionTwoList = sectionTwo.map((key) => <AnswerOptions key={`s2-${key}`} sectionNum={2} questionNum={key} currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion} />);
+  const sectionThreeList = sectionThree.map((key) => <AnswerOptions key={`s3-${key}`} sectionNum={3} questionNum={key} currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion} />);
+  const sectionFourList = sectionFour.map((key) => <AnswerOptions key={`s4-${key}`} sectionNum={4} questionNum={key} currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion} />);
   
   //conditional rendering of sections based on currentSecion prop
   const SECTION_LISTS = {
@@ -36,10 +37,10 @@ const SectionHeader = styled.h3`
   
 `
 const mapStateToProps = store => ({
-  sectionOne: getSectionOneKeys(store),
-  sectionTwo: getSectionTwoKeys(store),
-  sectionThree: getSectionThreeKeys(store),
-  sectionFour: getSectionFourKeys(store),
+  sectionOne: getSectionOneQuestions(store),
+  sectionTwo: getSectionTwoQuestions(store),
+  sectionThree: getSectionThreeQuestions(store),
+  sectionFour: getSectionFourQuestions(store),
   currentSection: store.scantron.currentSection,
 });
 
