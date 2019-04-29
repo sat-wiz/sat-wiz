@@ -26,24 +26,60 @@ const SectionsContainer  = ({ sectionOneQuestions, sectionTwoQuestions, sectionT
     4: sectionFourQuestions,
   }
 
+  const nextSection = () => {
+   
+    setCurrentSection(currentSection + 1);
+
+  }
+
+  const previousSection = () => {
+    setCurrentSection(currentSection - 1);
+  }
+
   return (
-    <div>
+    <>
       <SectionHeader>Section: {currentSection} </SectionHeader>
-      {createSectionList(SECTIONS_MAP[currentSection])}
-    </div>
+      <Section>
+        {createSectionList(SECTIONS_MAP[currentSection])}
+        {currentSection > 1 && <SectionButtons onClick={previousSection}>Previous</SectionButtons>}
+        <Divider></Divider>
+        {currentSection < 4 && <SectionButtons onClick={nextSection}>Next</SectionButtons>}  
+      </Section>
+    </>
   );
 }
+
+
+const Section = styled.div`
+display: flex;
+flex-flow: column wrap;
+height: 50em;
+width: 10em;
+`
 
 const SectionHeader = styled.h3`
   font-size: 2em;
   color: palevioletred;
-  
+`
+
+const SectionButtons = styled.button`
+border: none;
+background: palevioletred
+color: white;
+padding: 5px;
+text-transform: uppercase;
+border-radius: 6px;
+display: inline-block;
+`
+const Divider = styled.div`
+margin-bottom : 10px;
 `
 const mapStateToProps = store => ({
   sectionOneQuestions: getSectionOneQuestions(store),
   sectionTwoQuestions: getSectionTwoQuestions(store),
   sectionThreeQuestions: getSectionThreeQuestions(store),
   sectionFourQuestions: getSectionFourQuestions(store),
+
 });
 
 //type checking for props

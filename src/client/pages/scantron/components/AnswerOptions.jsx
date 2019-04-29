@@ -16,7 +16,7 @@ class AnswerOptions extends React.Component {
     let refNode = this.questionRef.current;
     //because we're attaching the ref to all questions, need to select the first question by using .parentNode 
     //which is the div in the sections container and select the second element which is the first question
-    refNode.parentNode.children[1].focus(); 
+    refNode.parentNode.children[0].focus(); 
     this.moveFocus(refNode);
   }
   
@@ -33,6 +33,7 @@ class AnswerOptions extends React.Component {
       if((keyCode === 49 || keyCode === 50 || keyCode === 51 ||
           keyCode === 52 || keyCode === 40) && active.nextSibling) {
         active.nextSibling.focus();
+       
         this.props.setCurrentQuestion(this.props.currentQuestion + 1)
       }
       //move to prev question on pressing up key
@@ -76,7 +77,6 @@ class AnswerOptions extends React.Component {
 
 const QuestionWrapper = styled.div`
   display: flex; 
-  flex-wrap: nowrap;
   background-color: ${({ isHighlighted }) => isHighlighted ? 'powderblue' : 'transparent'}
 `
 const AnswerChoicesWrapper = styled.strong`
