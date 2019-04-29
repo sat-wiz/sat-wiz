@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.associate = (models) => {
-models.User.hasMany(models.TestSession)
+    models.User.hasMany(models.TestSession)
   }
   return User;
 }
