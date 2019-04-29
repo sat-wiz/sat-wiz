@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getAnswer, setCurrentQuestion, setInputAnswer } from '../actions'
+import { getAnswer, setInputAnswer } from '../actions'
 import styled from 'styled-components';
 
 class AnswerOptions extends React.Component {
@@ -53,7 +53,7 @@ class AnswerOptions extends React.Component {
       4: 'D',
     };
     if (key === '1' || key === '2' || key === '3' || key === '4' ) {
-      console.log('hi delete me later pls on line 56')
+  
       this.props.setInputAnswer(sectionNum, questionNum, KEY_MAP[key])
     };
   }
@@ -92,7 +92,7 @@ const Bubble = styled.span`
   border: 2px solid palevioletred;
   border-radius: 20px;
   background-color: ${({ isFilled }) => isFilled ? 'palevioletred' : 'white'};
-  font-color: ${({ isFilled }) => isFilled ? 'white' : 'black'};
+  color: ${({ isFilled }) => isFilled ? 'white' : 'black'};
   cursor: pointer;
   user-select: none;
   `
@@ -112,7 +112,6 @@ const mapStateToProps = (store, ownProps) => ({
 });
 
 const mapDispatchToProps = {
-  setCurrentQuestion,
   setInputAnswer,
 };
 
