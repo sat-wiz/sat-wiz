@@ -1,15 +1,6 @@
-const Sequelize = require('sequelize');
-// const db = require('./initialDB');
-
 module.exports = (sequelize, DataTypes) => {
  
   const TestSession = sequelize.define('TestSession', {
-    sessionTime: {
-      type: DataTypes.DATE
-    },
-    userId: {
-      type: DataTypes.INTEGER
-    },
     testId: {
       type: DataTypes.STRING,
       defaultValue: 'a'

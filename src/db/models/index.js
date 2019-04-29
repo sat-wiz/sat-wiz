@@ -12,7 +12,6 @@ pool: {
     }
   })
 
-// const Question = require('./Question')
 
 // Pull all models into single "models" object
 const models = {
