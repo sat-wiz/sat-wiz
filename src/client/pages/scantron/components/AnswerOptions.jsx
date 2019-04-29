@@ -47,7 +47,7 @@ class AnswerOptions extends React.Component {
 
     return (
       <>
-        <Wrapper>
+        <Wrapper >
           <Question>{questionNum}.</Question>
           <Bubble id='A' ref={this.setInputRef} >A</Bubble>
           <Bubble id='B' onKeyDown={this.handleKeyDown}>B</Bubble>
@@ -126,7 +126,6 @@ const Bubble = styled.button`
 
   
 `
-
 
 const SECTIONS = {
   1: 'sectionOne',
