@@ -23,6 +23,7 @@ const initialState = {
   sectionFour: sectionFour,
   
   currentQuestion: 1,
+  tests: {},
 };
 
 const reducer = (state=initialState, action) => {
@@ -55,6 +56,12 @@ const reducer = (state=initialState, action) => {
         currentQuestion: action.nextQuestionNum,
       }
       
+    case actionTypes.RECEIVE_ALL_TESTS:
+      return {
+        ...state,
+        tests: action.tests,
+      }
+
     default:
       return state;
   }

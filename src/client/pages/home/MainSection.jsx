@@ -10,7 +10,7 @@ const MainSection = ({ classes }) => {
   return (
     <SectionWrapper>
       <Header>A smarter way to learn from your mistakes.</Header>
-      <Button variant='outlined' size='large' className={ classes.button } component={ Link } to='scantron'>
+      <Button variant='outlined' size='large' className={ classes.Sbutton } component={ Link } to='scantron'>
         START NOW
       </Button>
       <IconWrapper>
@@ -40,23 +40,16 @@ const IconWrapper = styled.div`
   display: flex;
   justify-content: space-between
 `
-
 const Icon = styled.img`
   margin: 2em 1em;
   height: 7em;
   width: 7em;
-
-
-
 `
 const styles = theme => ({
   button: {
     color: 'white',
     borderColor: 'white',
     marginTop: '3em',
-  },
-  input: {
-    display: 'none',
   },
 });
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getAnswer, setInputAnswer } from '../actions'
+import { setInputAnswer } from '../actions'
+import { getAnswer } from '../selectors'
 import styled from 'styled-components';
 
 class AnswerOptions extends React.Component {

@@ -7,7 +7,7 @@ const ScantronPage = lazy(() => import('./pages/ScantronPage'))
 const AnalyticsPage = lazy(() => import('./pages/AnalyticsPage')) 
 
 //uppermost components are pages that represent the entire page of a specific routex
-const App = () => {
+ const App = () => {
   return (
     <Router>
       <NavBar/>

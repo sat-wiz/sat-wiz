@@ -1,12 +1,31 @@
-import { createSelector } from 'reselect'
-
+import * as testsAPI from '../../api/testsAPI';
 //actionTypes
 export const actionTypes = {
   INPUT_ANSWER: 'INPUT_ANSWER',
-  UPDATE_CURRENT_QUESTION: 'UPDATE_CURRENT_QUESTION'
+  UPDATE_CURRENT_QUESTION: 'UPDATE_CURRENT_QUESTION',
+  
+  RECEIVE_ALL_TESTS: 'RECEIVE_ALL_TESTS'
 }
 
-//actions / setters
+export const receiveAllTests = (tests) => ({
+  type: actionTypes.RECEIVE_ALL_TESTS,
+  tests
+})
+
+//fat arrow function returns a function
+export const requestAllTests = () => async (dispatch) => {
+  try {
+    //destructure data and rename data as tests
+    const { data: tests } = await testsAPI.fetchAllTests()
+    console.log(tests)
+    dispatch(receiveAllTests(tests));
+  }
+  catch(e) {
+    console.error(e);
+  }
+}
+
+//action creators && setters
 export const setInputAnswer = (sectionNum, questionNum, answer) => ({
   type: actionTypes.INPUT_ANSWER,
   sectionNum,
@@ -19,35 +38,3 @@ export const setCurrentQuestion = (nextQuestionNum) => ({
   nextQuestionNum,
 })
 
-//selectors
-const getSectionOne = store => store.scantron.sectionOne;
-const getSectionTwo = store => store.scantron.sectionTwo;
-const getSectionThree = store => store.scantron.sectionThree;
-const getSectionFour = store => store.scantron.sectionFour;
-//call parseInt bc keys are strings but need to be numbers
-const getQuestions = (section) => Object.keys(section).map(questionNum => parseInt(questionNum))
-
-
-export const getAnswer = (store, section, questionNum) => store.scantron[section][questionNum];
-
-//memoized selectors using reselect library
-export const getSectionOneQuestions = createSelector(
-  //the output of getSectionOne gets passed in as params for getQuestions
-  getSectionOne,
-  getQuestions
-)
-
-export const getSectionTwoQuestions = createSelector(
-  getSectionTwo,
-  getQuestions
-);
-
-export const getSectionThreeQuestions = createSelector(
-  getSectionThree,
-  getQuestions
-);
-
-export const getSectionFourQuestions = createSelector(
-  getSectionFour,
-  getQuestions
-);
