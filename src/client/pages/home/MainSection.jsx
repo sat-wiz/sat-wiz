@@ -10,9 +10,9 @@ const MainSection = ({ classes }) => {
   return (
     <SectionWrapper>
       <Header>A smarter way to learn from your mistakes.</Header>
-      <Button variant='outlined' size='large' className={ classes.button } component={ Link } to='scantron'>
+      <StyledButton variant='outlined' size='large' className={ classes.Sbutton } component={ Link } to='scantron'>
         START NOW
-      </Button>
+      </StyledButton>
     </SectionWrapper>
   )
 }
@@ -31,19 +31,16 @@ const Header = styled.h1`
   font-weight: semi-bold;
   color: white;
 `
-const styles = theme => ({
-  button: {
-    color: 'white',
-    borderColor: 'white',
-    marginTop: '3em',
-  },
-  input: {
-    display: 'none',
-  },
-});
+
+const StyledButton = styled(Button)`
+  color: 'white',
+  border-color: 'white',
+  margin-top: '3em',
+`
+
 
 MainSection.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(MainSection);
+export default MainSection;
