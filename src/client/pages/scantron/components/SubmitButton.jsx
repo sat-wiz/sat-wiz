@@ -7,8 +7,6 @@ import cyan from '@material-ui/core/colors/cyan';
 import grey from '@material-ui/core/colors/grey';
 import styled from 'styled-components';
 
-
-
 function SubmitButton(props) {
   const { classes } = props;
   return (
@@ -34,7 +32,6 @@ const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column
 `
-
 SubmitButton.propTypes = {
   classes: PropTypes.object.isRequired,
 };

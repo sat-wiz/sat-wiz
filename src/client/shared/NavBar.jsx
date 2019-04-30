@@ -88,7 +88,6 @@ class NavBar extends React.Component {
   }
 }
 
-
 const styles = {
   root: {
     flexGrow: 1,

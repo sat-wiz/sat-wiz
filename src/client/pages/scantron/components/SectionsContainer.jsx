@@ -91,7 +91,6 @@ const mapStateToProps = store => ({
   sectionTwoQuestions: getSectionTwoQuestions(store),
   sectionThreeQuestions: getSectionThreeQuestions(store),
   sectionFourQuestions: getSectionFourQuestions(store),
-
 });
 
 const mapDispatchToProps = {
