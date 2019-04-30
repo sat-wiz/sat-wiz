@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AnswerOptions from './AnswerOptions'
-import { getSectionOneQuestions, getSectionTwoQuestions, getSectionThreeQuestions, getSectionFourQuestions, setCurrentQuestion } from '../actions';
+import { getSectionOneQuestions, 
+         getSectionTwoQuestions, 
+         getSectionThreeQuestions, 
+         getSectionFourQuestions, 
+         setCurrentQuestion,
+         requestAllTests } from '../actions';
 //import order: library -> components -> props
 import styled from 'styled-components';
 import SubmitButton from './SubmitButton'
@@ -10,7 +15,12 @@ import SubmitButton from './SubmitButton'
 
 
 //if not using object destructing we would pass props as a parameter to SectionsContainer functional component.
-const SectionsContainer  = ({ sectionOneQuestions, sectionTwoQuestions, sectionThreeQuestions, sectionFourQuestions, setCurrentQuestion }) => {
+const SectionsContainer  = ({ sectionOneQuestions, 
+                              sectionTwoQuestions, 
+                              sectionThreeQuestions, 
+                              sectionFourQuestions, 
+                              setCurrentQuestion,
+                              requestAllTests }) => {
   //creating local state for currentSection because no other components need it
   const [currentSection, setCurrentSection] = useState(1);
 
@@ -48,7 +58,7 @@ const SectionsContainer  = ({ sectionOneQuestions, sectionTwoQuestions, sectionT
         <Divider></Divider>
         {currentSection < 4 && <SectionButtons onClick={nextSection}>Next</SectionButtons>}  
         <Divider></Divider>
-        {currentSection === 4 && <SectionButtons>Submit</SectionButtons>}
+        {currentSection === 4 && <SectionButtons onClick={requestAllTests}>Submit</SectionButtons>}
       </Section> 
     </>
   );
@@ -90,6 +100,7 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = {
   setCurrentQuestion,
+  requestAllTests,
 };
 
 

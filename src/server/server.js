@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Sync DB on start. {force: true} drops DB if it exists (use for dev)
 models.sequelize.sync({force: true})
     .then(() => {
-    app.listen(3000, () => {
+    app.listen(8000, () => {
         console.log("Server listening on port 3000");
     });
 })

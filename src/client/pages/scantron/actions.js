@@ -1,10 +1,29 @@
 import { createSelector } from 'reselect'
+import * as testAPI from '../../api/testAPI';
+
 
 //actionTypes
 export const actionTypes = {
   INPUT_ANSWER: 'INPUT_ANSWER',
-  UPDATE_CURRENT_QUESTION: 'UPDATE_CURRENT_QUESTION'
+  UPDATE_CURRENT_QUESTION: 'UPDATE_CURRENT_QUESTION',
+  
+  RECEIVE_ALL_TESTS: 'RECEIVE_ALL_TESTS'
 }
+
+
+export const receiveAllTests = (tests) => ({
+  type: actionTypes.RECEIVE_ALL_TESTS,
+  tests
+})
+
+export const requestAllTests = () => (dispatch) => {
+  return testAPI.fetchAllTests()
+    .then(tests => dispatch(receiveAllTests(tests)));
+}
+
+
+
+
 
 //actions / setters
 export const setInputAnswer = (sectionNum, questionNum, answer) => ({

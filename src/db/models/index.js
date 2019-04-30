@@ -1,8 +1,7 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('satwiz', 'satwiz', '',
+const sequelize = new Sequelize('postgres', 'postgres', 'password',
 {host: 'localhost',
 dialect: 'postgres',
-operatorsAliases: false,
 
 pool: {
   max: 5,
