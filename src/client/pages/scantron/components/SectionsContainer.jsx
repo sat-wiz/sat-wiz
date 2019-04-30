@@ -2,17 +2,12 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AnswerOptions from './AnswerOptions'
+import {  setCurrentQuestion, requestAllTests } from '../actions';
 import { getSectionOneQuestions, 
          getSectionTwoQuestions, 
          getSectionThreeQuestions, 
-         getSectionFourQuestions, 
-         setCurrentQuestion,
-         requestAllTests } from '../actions';
-//import order: library -> components -> props
+         getSectionFourQuestions, } from '../selectors';
 import styled from 'styled-components';
-import SubmitButton from './SubmitButton'
-
-
 
 //if not using object destructing we would pass props as a parameter to SectionsContainer functional component.
 const SectionsContainer  = ({ sectionOneQuestions, 
@@ -49,6 +44,7 @@ const SectionsContainer  = ({ sectionOneQuestions,
     setCurrentQuestion(1);
   }
 
+  //conditional rendering of buttons
   return (
     <>
       <SectionHeader>Section: {currentSection} </SectionHeader>
@@ -102,7 +98,6 @@ const mapDispatchToProps = {
   setCurrentQuestion,
   requestAllTests,
 };
-
 
 //type checking for props
 SectionsContainer.propTypes = {
