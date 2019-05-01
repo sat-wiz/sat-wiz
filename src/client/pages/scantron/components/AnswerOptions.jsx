@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import { setInputAnswer } from '../actions'
 import { getAnswer } from '../selectors'
 import styled from 'styled-components';
+import MultipleChoice from './MultipleChoice';
 
-class AnswerOptions extends React.Component {
+export class AnswerOptions extends React.Component {
   constructor(props) {
     super(props);
     this.questionRef = React.createRef();
@@ -60,28 +61,25 @@ class AnswerOptions extends React.Component {
   }
 
   render = () => {
-    const { currentQuestion, sectionNum, questionNum, answer } = this.props;
+    const { currentQuestion, sectionNum, questionNum } = this.props;
     
     return (
-      <QuestionWrapper ref={ this.questionRef } 
+      <AnswerChoicesWrapper ref={ this.questionRef } 
                        tabIndex={0} 
                        onKeyDown={ (e) => this.handleKeyDown(e, sectionNum, questionNum) } 
                        isHighlighted={ currentQuestion === questionNum }>
-        <AnswerChoicesWrapper>{ questionNum }.</AnswerChoicesWrapper>
-          <Bubble isFilled={ answer === 'A'}>A</Bubble>
-          <Bubble isFilled={ answer === 'B'}>B</Bubble>
-          <Bubble isFilled={ answer === 'C'}>C</Bubble>
-          <Bubble isFilled={ answer === 'D'}>D</Bubble>
-      </QuestionWrapper>
+        <QuestionsNumWrapper>{ questionNum }.</QuestionsNumWrapper>
+        <MultipleChoice sectionNum={ sectionNum } questionNum={ questionNum }/>
+      </AnswerChoicesWrapper>
     )
   }
 }
 
-const QuestionWrapper = styled.div`
+const AnswerChoicesWrapper = styled.div`
   display: flex; 
   background-color: ${({ isHighlighted }) => isHighlighted ? 'powderblue' : 'transparent'}
 `
-const AnswerChoicesWrapper = styled.strong`
+const QuestionsNumWrapper = styled.strong`
   font-size: 1em;
   margin: 0.5em;
   padding: 0.25em 1em;
@@ -98,18 +96,10 @@ const Bubble = styled.span`
   user-select: none;
   `
 
-const SECTIONS = {
-  1: 'sectionOne',
-  2: 'sectionTwo',
-  3: 'sectionThree',
-  4: 'sectionFour'
-}
-
 //prevent unnecessary rerendering of entire list after updating an answer by connecting directly to the store
 //instead of passing those props from the parent component
 const mapStateToProps = (store, ownProps) => ({
   currentQuestion: store.scantron.currentQuestion,
-  answer: getAnswer(store, SECTIONS[ownProps.sectionNum], ownProps.questionNum),
 });
 
 const mapDispatchToProps = {
