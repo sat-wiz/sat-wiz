@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const models = require('../../db/models/index');
-const answers = require('../../db/models/answerSheet')
+const answers = require('../../db/models/answerSheet');
+const jwt = require('express-jwt');
+const jwksRsa = require('jwks-rsa');
 
 router.get('/', (req, res) => res.status(200).send({
   message: 'Welcome to the Todos API!',
@@ -18,7 +20,21 @@ router.get('/questionsTest', (req, res) => {
     .catch((error) => res.status(400).send(error));
 });
 
-router.post('/users', (req, res) => {
+const checkJwt = jwt({
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `https://localhost:3000/.well-known/jwks.json`
+  }),
+
+  // Validate the audience and the issuer.
+  audience: 'PJMHq5r4HqSf9YfULATtbomGYtSLYc7q',
+  issuer: `http://localhost:3000/`,
+  algorithms: ['RS256']
+});
+
+router.post('/users', checkJwt, (req, res) => {
   console.log(req.body.firstname)
   models.User
     .create({
