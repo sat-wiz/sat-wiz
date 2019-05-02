@@ -1,16 +1,45 @@
 const express = require('express');
 const router = express.Router();
-const models = require('../../db/models/index');
-const answers = require('../../db/models/answerSheet');
 const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
+const models = require('../../db/models/index');
+const answers = require('../../db/models/answerSheet');
+
+
+//get userId from authO so we can use it in our post request to the database
+
+
+
+
+router.get('/public', function (req, res) {
+  res.json({
+    message: 'Hello from a public endpoint! You don\'t need to be authenticated to see this.'
+  });
+});
+
+// var options2 = {
+//   method: 'POST',
+//   url: 'https://juliebeak.auth0.com/oauth/token',
+//   headers: { 'content-type': 'application/x-www-form-urlencoded' },
+//   form:
+//   {
+//     grant_type: 'client_credentials',
+//     client_id: 'PJMHq5r4HqSf9YfULATtbomGYtSLYc7q',
+//     client_secret: 'mapVQg9r9HXnoRglFrrYPLdClkLBwe05LPZb--c8s02sOjPPx2Bvfic7wazGl1o4',
+//     audience: 'https://api.example.com/geocoding/v1/'
+//   }
+// };
+
+// request(options2, function (error, response, body) {
+//   if (error) throw new Error(error);
+
+//   console.log(body);
+// });
+
+
 
 router.get('/', (req, res) => res.status(200).send({
   message: 'Welcome to the Todos API!',
-}))
-
-router.get('/add', (req, res) => res.status(200).send({
-  message: 'Success GET to /add!',
 }))
 
 router.get('/questionsTest', (req, res) => {
@@ -34,11 +63,15 @@ const checkJwt = jwt({
   algorithms: ['RS256']
 });
 
+
+router.post('/', checkJwt, (req, res) => {
+  console.log(res.body)
+  console.log('posted!')
+})
+
 router.post('/users', checkJwt, (req, res) => {
-  console.log(req.body.firstname)
   models.User
     .create({
-      // id: req.body.id,
       firstname: req.body.firstname,
       lastname: req.body.lastname
     })
@@ -55,6 +88,10 @@ router.post('/attributeTest', (req, res) => {
     .then((attrib) => res.status(201).send(attrib))
     .catch((error) => res.status.send(error));
 })
+
+
+//create a seperate middleware to get the user id from oauth, save test session to users ID in database
+
 
 router.post('/testSession', (req, res) => {
   models.TestSession

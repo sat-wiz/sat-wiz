@@ -20,6 +20,7 @@ class Auth {
     }
 
     getIdToken() {
+        console.log(this.idToken)
         return this.idToken;
     }
 
