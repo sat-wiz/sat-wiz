@@ -7,12 +7,15 @@ import cyan from '@material-ui/core/colors/cyan';
 import grey from '@material-ui/core/colors/grey';
 import styled from 'styled-components';
 
+
+//on click action that sets off to the post request
+
 function SubmitButton(props) {
   const { classes } = props;
   return (
     <ButtonWrapper>
       <Button variant="contained" className={classes.button}>
-      SUBMIT
+        SUBMIT
       </Button>
     </ButtonWrapper>
 
@@ -24,7 +27,7 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     background: cyan[300],
     color: grey[50],
-    
+
   },
 });
 

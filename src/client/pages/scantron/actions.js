@@ -3,15 +3,18 @@ import * as testsAPI from '../../api/testsAPI';
 export const actionTypes = {
   INPUT_ANSWER: 'INPUT_ANSWER',
   UPDATE_CURRENT_QUESTION: 'UPDATE_CURRENT_QUESTION',
-  
+
   RECEIVE_ALL_TESTS: 'RECEIVE_ALL_TESTS'
 }
 
+//action
 export const receiveAllTests = (tests) => ({
   type: actionTypes.RECEIVE_ALL_TESTS,
   tests
 })
 
+
+//action creator
 //fat arrow function returns a function
 export const requestAllTests = () => async (dispatch) => {
   try {
@@ -20,7 +23,7 @@ export const requestAllTests = () => async (dispatch) => {
     console.log(tests)
     dispatch(receiveAllTests(tests));
   }
-  catch(e) {
+  catch (e) {
     console.error(e);
   }
 }
