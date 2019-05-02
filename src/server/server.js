@@ -16,11 +16,13 @@ models.sequelize.sync({ force: true })
         });
     })
 
+//TODO: change this
 app.use('/test',
     require('./routes/index.js')
 );
 
-app.get('/', function (req, res) {
+app.get('/', function(req,res) {
+    //TODO: cleanup
     res.send('Testing!')
 })
 

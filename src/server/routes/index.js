@@ -39,9 +39,16 @@ router.get('/public', function (req, res) {
 
 
 router.get('/', (req, res) => res.status(200).send({
+  //TODO: cleanup
   message: 'Welcome to the Todos API!',
 }))
 
+router.get('/add', (req, res) => res.status(200).send({
+  //TODO: cleanup
+  message: 'Success GET to /add!',
+}))
+
+//TODO: we need to be able to retrieve separate tests
 router.get('/questionsTest', (req, res) => {
   models.Question
     .bulkCreate(answers)
@@ -70,6 +77,10 @@ router.post('/', checkJwt, (req, res) => {
 })
 
 router.post('/users', checkJwt, (req, res) => {
+//TODO: users and test routes should be separate
+//currently this is test/users ???
+router.post('/users', (req, res) => {
+  console.log(req.body.firstname)
   models.User
     .create({
       firstname: req.body.firstname,
@@ -79,6 +90,7 @@ router.post('/users', checkJwt, (req, res) => {
     .catch((error) => res.status.send(error));
 });
 
+//TODO: why is there a post route for creating an attribute?
 router.post('/attributeTest', (req, res) => {
   models.Attribute
     .create({

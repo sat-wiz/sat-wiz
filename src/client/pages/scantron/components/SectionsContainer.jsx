@@ -23,7 +23,7 @@ const SectionsContainer  = ({ sectionOneQuestions,
     return questions.map((question) => <AnswerOptions key={`s${currentSection}-${question}`} 
                                                       sectionNum={currentSection} 
                                                       questionNum={question}
-                                                      setCurrentQuestion={setCurrentQuestion}/>)
+                                                      setCurrentQuestion={setCurrentQuestion} />)
   }
   
   //created for conditional rendering of sections
