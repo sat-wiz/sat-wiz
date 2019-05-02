@@ -76,7 +76,7 @@ router.post('/', checkJwt, (req, res) => {
   console.log('posted!')
 })
 
-router.post('/users', checkJwt, (req, res) => {
+// router.post('/users', checkJwt, (req, res) => {
 //TODO: users and test routes should be separate
 //currently this is test/users ???
 router.post('/users', (req, res) => {

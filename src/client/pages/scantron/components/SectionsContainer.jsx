@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AnswerOptions from './AnswerOptions'
-import {  setCurrentQuestion, requestAllTests } from '../actions';
+import {  setCurrentQuestion } from '../actions';
 import { getSectionOneQuestions, 
          getSectionTwoQuestions, 
          getSectionThreeQuestions, 
@@ -54,7 +54,7 @@ const SectionsContainer  = ({ sectionOneQuestions,
         <Divider></Divider>
         {currentSection < 4 && <SectionButtons onClick={nextSection}>Next</SectionButtons>}  
         <Divider></Divider>
-        {currentSection === 4 && <SectionButtons onClick={requestAllTests}>Submit</SectionButtons>}
+        {currentSection === 4 && <SectionButtons>Submit</SectionButtons>}
       </Section> 
     </>
   );
@@ -95,7 +95,6 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = {
   setCurrentQuestion,
-  requestAllTests,
 };
 
 //type checking for props

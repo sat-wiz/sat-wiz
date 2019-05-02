@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { requestAllTests } from '../../scantron/actions';
+import { requestAllTests } from '../actions';
 import '../../../../../node_modules/react-vis/dist/style.css';
 import {
   Crosshair,
@@ -11,6 +11,11 @@ import {
   XYPlot,
   YAxis,
 } from 'react-vis';
+
+
+const mapStateToProps = (store) => ({
+  tests: store.analytics.tests
+})
 
 const mapDispatchToProps = {
   requestAllTests
@@ -47,25 +52,19 @@ class WritingGraph extends React.Component {
     super(props)
     this.state = {
       selectedPointId: null,
-      tests: {}
     };
   }
+
   componentDidMount = () => {
-    let tests = { ...this.state.tests }
-    tests = this.props.requestAllTests()
-    this.setState({
-      ...this.state,
-      tests
-    })
-    console.log(this.state.tests)
+    this.props.requestAllTests()
   }
 
   render() {
     const { crosshairValues, selectedPointId } = this.state;
-    const { requestAllTests } = this.props
+    const { tests } = this.props;
+
     return (
       <div>
-        <button onClick={requestAllTests}>test</button>
         <XYPlot
           onMouseLeave={() =>
             this.setState({ selectedPointId: null, crosshairValues: null })
@@ -99,4 +98,4 @@ class WritingGraph extends React.Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(WritingGraph);
+export default connect(mapStateToProps, mapDispatchToProps)(WritingGraph);
