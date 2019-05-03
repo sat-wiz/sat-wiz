@@ -13,11 +13,10 @@ const App = () => {
     <Router>
       <NavBar />
       <Switch>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path='/callback' component={Callback} />
-          <Route path="/scantron" component={ScantronPage} />
-          <Route path="/analytics" component={AnalyticsPage} />
+        <Suspense fallback={ <img src="https://svgshare.com/i/CpJ.svg" alt="gears" /> }>
+          <Route exact path="/" component={ HomePage }/>
+          <Route path="/scantron" component={ ScantronPage }/>
+          <Route path="/analytics" component={ AnalyticsPage }/>
         </Suspense>
       </Switch>
     </Router>
