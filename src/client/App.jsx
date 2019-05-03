@@ -12,7 +12,7 @@ const AnalyticsPage = lazy(() => import('./pages/AnalyticsPage'))
     <Router>
       <NavBar/>
       <Switch>
-        <Suspense fallback={ <div>Loading...</div> }>
+        <Suspense fallback={ <img src="https://svgshare.com/i/CpJ.svg" alt="gears" /> }>
           <Route exact path="/" component={ HomePage }/>
           <Route path="/scantron" component={ ScantronPage }/>
           <Route path="/analytics" component={ AnalyticsPage }/>
