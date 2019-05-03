@@ -1,13 +1,14 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('postgres', 'postgres', 'password',
-{host: 'localhost',
-dialect: 'postgres',
- 
-pool: {
-  max: 5,
-  min: 0,
-  acquire: 30000,
-  idle: 10000
+const sequelize = new Sequelize('xfamztwy', 'xfamztwy', 'eMqbyS5ToQvWRE1BVBn-ZJV1EwXj34wy',
+  {
+    host: 'isilo.db.elephantsql.com',
+    dialect: 'postgres',
+
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
     }
   })
 
